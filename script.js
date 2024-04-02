@@ -45,4 +45,34 @@ function getLocation() {
       <p>Wind Speed: ${data.wind.speed} m/s</p>
     `;
   }
+
+  function displayWeather(data) {
+    const weatherInfo = document.getElementById("weather-info");
+    const weatherEmoji = getWeatherEmoji(data.weather[0].description);
+    
+    weatherInfo.innerHTML = `
+      <h2>${data.name}</h2>
+      <p>${weatherEmoji} ${data.weather[0].description}</p>
+      <p>Temperature: ${data.main.temp}°C</p>
+      <p>Wind Speed: ${data.wind.speed} m/s</p>
+    `;
+  }
+  
+  function getWeatherEmoji(description) {
+    description = description.toLowerCase();
+    if (description.includes("clear")) {
+      return "☀️";
+    } else if (description.includes("clouds")) {
+      return "☁️";
+    } else if (description.includes("rain")) {
+      return "🌧️";
+    } else if (description.includes("thunderstorm")) {
+      return "⛈️";
+    } else if (description.includes("snow")) {
+      return "❄️";
+    } else {
+      return "❓"; // Emoji for unknown weather
+    }
+  }
+  
   
